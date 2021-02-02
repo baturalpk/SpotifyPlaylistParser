@@ -1,10 +1,7 @@
-from os import confstr, write
 from bs4 import BeautifulSoup as bs4
 import requests as rq
 import re
 import sys
-
-# TODO: handle exceptions for URLs and JS-parser !!!
 
 URL = sys.argv[1]
 content = rq.get(URL)
