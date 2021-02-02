@@ -36,12 +36,17 @@ app.post('/', urlencodedParser, (req, res) => {
         console.log('result: ', result.toString());
 
         fs.readFile("./temp/temp.txt", (err, data) => {
-            if (err) { console.error(err); return }
+            if (err) { console.error(err); res.send("Read-file exception!"); }
 
-            let playlistData_String = data.toString()
-            let playlistData_JSON = JSON.parse(playlistData_String)
-            parsedData = Parser(playlistData_JSON, "Playlist")
-            res.render('result', {data: parsedData})
+            try {
+                let playlistData_String = data.toString();
+                let playlistData_JSON = JSON.parse(playlistData_String);
+                parsedData = Parser(playlistData_JSON, "Playlist");
+                res.render('result', {data: parsedData});
+                
+            } catch (error) {
+                res.send("Scraping error..! Try again with a valid URL.");
+            }
         });
     });
 });
