@@ -1,0 +1,33 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Spotify Playlist Parser
+        link(rel='stylesheet', href='/style.css')
+    body
+        div(id="root")
+            form(action="/", method="POST")
+                input(type="text", name="_url")
+                input(type="submit", value="Parse It")
+            |
+            a(href='/')
+                img(src='images/home-icon.png' alt='Return Homepage' style='width:144px; height:144px;')
+            br
+            |    
+            h2(id="playlist-name")= "Playlist: " + data.name
+            h3(id="playlist-owner")= "Owner: " + data.owner
+            |
+            - var i = 0;
+            ol
+                if data.length>100
+                    h5(id="playlist-length")= "Number of songs: " + data.length + " (just showing first 100 tracks...)"
+                    - for (var i = 0; i < 100; ++i) {
+                        li(id="tracks")= data.tracks[i].track.name + ' by ' + data.tracks[i].track.artists
+                    - }
+                else
+                    h5(id="playlist-length")= "Number of songs: " + data.length
+                    - for (var i = 0; i < data.length; ++i) {
+                        li(id="tracks")= data.tracks[i].track.name + ' by ' + data.tracks[i].track.artists
+                    - }    
+                     
+                    
