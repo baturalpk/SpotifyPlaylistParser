@@ -70,3 +70,7 @@ input[type=submit] {
     letter-spacing: 1px;
     font-weight: bold;
 }
+
+h2, h3, h5, li {
+    color: white;
+}
