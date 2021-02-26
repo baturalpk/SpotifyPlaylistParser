@@ -13,7 +13,7 @@ if URL.startswith('https://open.spotify.com/playlist/'):
 
     try:
         bs = bs4(content.text, 'html.parser')
-        script = bs.find_all('script').pop(8)
+        script = bs.find_all('script').pop(5)
         playlistData = ""
         for line in script:
             isMatch = re.search("Spotify.Entity", line)
